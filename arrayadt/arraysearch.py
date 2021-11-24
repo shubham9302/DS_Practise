@@ -15,9 +15,6 @@ class ArraySearch(ArrayADT):
                 c = i
         return c
 
-    def sortArray(self):
-        self.array.sort()
-
     def binarysearchrecursion(self, element, low, high):
         print("low", low)
         print("high", high)
@@ -55,7 +52,6 @@ class ArraySearch(ArrayADT):
 
 if __name__ == "__main__":
     t1 = ArraySearch()
-    arraydata = array.array('i', [2, 3, 6, 8, 9])
     t1.insertelement(2, 7)
     print(t1.array)
     t1.deleteelement(3)
