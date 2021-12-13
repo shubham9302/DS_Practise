@@ -21,7 +21,7 @@ class ArrayADT:
     def deleteelement(self, index: int):
         currentlength = len(self.array)
         if index <= currentlength:
-            for i in range(index, currentlength-1):
+            for i in range(index, currentlength - 1):
                 self.array[i] = self.array[i + 1]
             self.array.pop()
         else:
