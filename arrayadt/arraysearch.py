@@ -15,28 +15,15 @@ class ArraySearch(ArrayADT):
                 c = i
         return c
 
-    def sortArray(self):
-        self.array.sort()
-
     def binarysearchrecursion(self, element, low, high):
-        print("low", low)
-        print("high", high)
+
         mid = int((low + high) / 2)
-        print("mid", mid)
         if self.data[mid] != element:
             if self.data[mid] >= element:
                 high = mid - 1
-                print("left loop")
-                print("low", low)
-                print("high", high)
-                print("#####")
                 return self.binarysearchrecursion(element, low, high)
             else:
                 low = mid + 1
-                print("right loop")
-                print("low", low)
-                print("high", high)
-                print("#####")
                 return self.binarysearchrecursion(element, low, high)
         else:
             return mid
@@ -55,12 +42,11 @@ class ArraySearch(ArrayADT):
 
 if __name__ == "__main__":
     t1 = ArraySearch()
-    arraydata = array.array('i', [2, 3, 6, 8, 9])
     t1.insertelement(2, 7)
     print(t1.array)
     t1.deleteelement(3)
     print(t1.array)
     print(t1.linearsearch(-1))
-    print(t1.binarysearchloop(14, 0, 6))
+    print(t1.binarysearchloop(9, 0, 6))
     print(t1.binarysearchrecursion(14, 0, 6))
 
