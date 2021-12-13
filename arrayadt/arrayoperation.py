@@ -34,9 +34,26 @@ class ArrayOperation(ArrayADT):
                 break
             self.array[i], self.array[j] = self.array[j], self.array[i]
 
+    def arraywithleftreverse(self):
+        for i in range(0, len(self.array) - 1):
+            j = i + 1
+            self.array[i] = self.array[j]
+
+        self.array[-1] = 1
+
+    def arraywithleftrotate(self):
+        for i in range(0, len(self.array) - 1):
+            j = i + 1
+            if i == 0:
+                tempval = self.array[i]
+            self.array[i] = self.array[j]
+
+        self.array[-1] = tempval
+
 
 if __name__ == "__main__":
     t1 = ArrayOperation()
-    t1.reversearraywithauxilayarray()
-    t1.reversearraywithswap()
+    # t1.reversearraywithauxilayarray()
+    # t1.reversearraywithswap()
+    t1.arraywithleftreverse()
     print(t1.array)
