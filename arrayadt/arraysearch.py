@@ -45,8 +45,8 @@ if __name__ == "__main__":
     t1.insertelement(2, 7)
     print(t1.array)
     t1.deleteelement(3)
-    print(t1.array)
-    print(t1.linearsearch(-1))
-    print(t1.binarysearchloop(9, 0, 6))
-    print(t1.binarysearchrecursion(14, 0, 6))
+    #print(t1.array)
+   # print(t1.linearsearch(-1))
+    print(t1.binarysearchloop(34, 0, 6))
+    #print(t1.binarysearchrecursion(14, 0, 6))
 
