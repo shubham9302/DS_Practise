@@ -16,6 +16,6 @@ class InsertionSort:
 
 
 if __name__ == "__main__":
-    arr = [8, 5, 7, 3, 2]
+    arr = [8, 1, 7, 3, 2]
     t1 = InsertionSort(arr)
     print(t1.sort())
