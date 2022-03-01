@@ -18,7 +18,15 @@ class LinkedListImp:
             self.tail = self.tail.next
         return self.tail
 
-    def printListWithLength(self):
+    def getLength(self):
+        counter = 0
+        temp = self.head
+        while temp:
+            temp = temp.next
+            counter += 1
+        return counter
+
+    def printList(self):
         counter = 0
         temp = self.head
         while temp:
@@ -57,9 +65,14 @@ class LinkedListImp:
 
     def InsertAtPosition(self, position_element, value):
         temp = self.head
+        if position_element == 0:
+            return self.insertElementatHead(value)
+        if position_element >= self.getLength():
+            raise IndexError
+        counter = -1
         while temp:
-            data = temp.data
-            if data == position_element:
+            counter += 1
+            if counter == position_element:
                 next_node_adress = temp.next
                 temp.next = Node(value)
                 temp.next.next = next_node_adress
@@ -82,9 +95,9 @@ if __name__ == "__main__":
     # print(t1.sumOfAllElements())
     # print(t1.maxElement())
     # print(t1.searchElement(32768))
-    # print(t1.InsertAtPosition(-4, 6))
+    print(t1.InsertAtPosition(0, 6))
     # print(t1.printListWithLength())
-    print(t1.insertElementatHead(8))
-    print(t1.printListWithLength())
-    print(t1.insertElementatHead(101))
-    print(t1.printListWithLength())
+    # print(t1.insertElementatHead(8))
+    print(t1.printList())
+    # print(t1.insertElementatHead(101))
+    # print(t1.printListWithLength())
