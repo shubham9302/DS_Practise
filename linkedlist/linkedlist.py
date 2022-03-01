@@ -67,12 +67,10 @@ class LinkedListImp:
             temp = temp.next
         return temp
 
-    def insertElementatHead(self,value):
+    def insertElementatHead(self, value):
         val = Node(value)
         val.next = self.head
         self.head = val
-
-
 
 
 if __name__ == "__main__":
@@ -80,12 +78,12 @@ if __name__ == "__main__":
     t1.addElement(2)
     t1.addElement(-4)
     t1.addElement(32768)
-    #print(t1.printListWithLength())
+    # print(t1.printListWithLength())
     # print(t1.sumOfAllElements())
     # print(t1.maxElement())
-    #print(t1.searchElement(32768))
-    #print(t1.InsertAtPosition(-4, 6))
-    #print(t1.printListWithLength())
+    # print(t1.searchElement(32768))
+    # print(t1.InsertAtPosition(-4, 6))
+    # print(t1.printListWithLength())
     print(t1.insertElementatHead(8))
     print(t1.printListWithLength())
     print(t1.insertElementatHead(101))
