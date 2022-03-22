@@ -145,7 +145,6 @@ class LinkedListImp:
             tail_pointer.next = temp
 
 
-
 if __name__ == "__main__":
     t1 = LinkedListImp()
     t1.addElement(2)
@@ -158,7 +157,7 @@ if __name__ == "__main__":
     # print(t1.maxElement())
     # print(t1.searchElement(32768))
     # print(t1.insertElement(1, 61))
-    #print(t1.printList())
+    # print(t1.printList())
     # print(t1.insertElementatHead(8))
     # print(t1.printList())
     # print(t1.insertElementatHead(101))
