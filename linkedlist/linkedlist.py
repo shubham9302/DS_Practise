@@ -97,7 +97,7 @@ class LinkedListImp:
         temp = self.head
         counter = 1
         while temp:
-            #counter += 1
+            # counter += 1
             if position == 0:
                 self.insertElementatHead(value)
                 break
@@ -120,21 +120,50 @@ class LinkedListImp:
             print(temp.data)
             self.printLinkedListRecursive(l1)
 
+    def insertInSortedList(self, value=None):
+        tail_pointer = None
+        head_pointer = self.head
+        counter = 0
+        while head_pointer:
+            data = head_pointer.data
+            if value > data:
+                tail_pointer = head_pointer
+                head_pointer = head_pointer.next
+                counter += 1
+            elif counter == 0:
+                self.insertElementatHead(value)
+                break
+
+            else:
+                temp = Node(value, head_pointer)
+                # temp.next = head_pointer
+                tail_pointer.next = temp
+                counter += 1
+                break
+        if counter == self.getLength():
+            temp = Node(value, None)
+            tail_pointer.next = temp
+
+
 
 if __name__ == "__main__":
     t1 = LinkedListImp()
     t1.addElement(2)
-    t1.addElement(-4)
-    t1.addElement(32768)
+    t1.addElement(6)
+    t1.addElement(12)
     val = t1.head
     # t1.printLinkedListRecursive(t1)
     # print(t1.printListWithLength())
     # print(t1.sumOfAllElements())
     # print(t1.maxElement())
     # print(t1.searchElement(32768))
-    print(t1.insertElement(1, 61))
-    print(t1.printList())
+    # print(t1.insertElement(1, 61))
+    #print(t1.printList())
     # print(t1.insertElementatHead(8))
     # print(t1.printList())
     # print(t1.insertElementatHead(101))
     # print(t1.printListWithLength())
+    t1.insertInSortedList(15)
+    t1.insertInSortedList(10)
+    t1.insertInSortedList(1)
+    print(t1.printList())
