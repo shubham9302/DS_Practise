@@ -144,6 +144,31 @@ class LinkedListImp:
             temp = Node(value, None)
             tail_pointer.next = temp
 
+    def deleteHeadNode(self):
+
+        temp = self.head.next
+        self.head.next = None
+        self.head = temp
+
+    def deleteNodeAtPosition(self, position=None):
+        temp = self.head
+        tail_counter = None
+        counter = 0
+        original_length = self.getLength()
+        while temp:
+            if position == 0:
+                self.deleteHeadNode()
+                break
+            elif counter == position and counter < self.getLength():
+                tail_counter.next = temp.next
+                break
+            else:
+                tail_counter = temp
+                temp = temp.next
+                counter += 1
+        if counter >= original_length:
+            raise Exception
+
 
 if __name__ == "__main__":
     t1 = LinkedListImp()
@@ -165,4 +190,11 @@ if __name__ == "__main__":
     t1.insertInSortedList(15)
     t1.insertInSortedList(10)
     t1.insertInSortedList(1)
+    # print(t1.printList())
+    print("#####")
+    # t1.deleteHeadNode()
+    # print(t1.printList())
+    print("####")
+    t1.deleteNodeAtPosition(2)
+    print("$$$$$")
     print(t1.printList())
