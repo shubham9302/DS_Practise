@@ -1,3 +1,6 @@
+from array import array
+
+
 class Node:
     def __init__(self, value=None, next=None):
         self.data = value
@@ -169,11 +172,42 @@ class LinkedListImp:
         if counter >= original_length:
             raise Exception
 
+    def isSorted(self):
+        temp = self.head
+        min_val = float('-inf')
+        val = True
+        while temp:
+            data = temp.data
+            if data > min_val:
+                temp = temp.next
+                min_val = data
+
+            else:
+                val = False
+                break
+        return val
+
+    def reverseLinkListWithReverseNumbers(self):
+        linked_list_size = self.getLength()
+        additional_arr = array("i", [0] * linked_list_size)
+        counter = 0
+        temp = self.head
+        while temp and counter < linked_list_size:
+            additional_arr[counter] = temp.data
+            temp = temp.next
+            counter += 1
+        temp = self.head
+        counter -= 1
+        while temp and counter >= 0:
+            temp.data = additional_arr[counter]
+            temp = temp.next
+            counter -= 1
+
 
 if __name__ == "__main__":
     t1 = LinkedListImp()
     t1.addElement(2)
-    t1.addElement(6)
+    t1.addElement(15)
     t1.addElement(12)
     val = t1.head
     # t1.printLinkedListRecursive(t1)
@@ -187,14 +221,17 @@ if __name__ == "__main__":
     # print(t1.printList())
     # print(t1.insertElementatHead(101))
     # print(t1.printListWithLength())
-    t1.insertInSortedList(15)
-    t1.insertInSortedList(10)
-    t1.insertInSortedList(1)
-    # print(t1.printList())
-    print("#####")
+    # t1.insertInSortedList(15)
+    # t1.insertInSortedList(10)
+    # t1.insertInSortedList(1)
+    print(t1.printList())
+    # print("#####")
     # t1.deleteHeadNode()
     # print(t1.printList())
-    print("####")
-    t1.deleteNodeAtPosition(2)
-    print("$$$$$")
+    # print("####")
+    # t1.deleteNodeAtPosition(2)
+    # print("$$$$$")
+    # print(t1.printList())
+    # print(t1.isSorted())
+    print(t1.reverseLinkListWithReverseNumbers())
     print(t1.printList())
