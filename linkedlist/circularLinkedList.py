@@ -54,8 +54,6 @@ class CircularLinkedList:
             self.tail.next = self.head
         elif position >= initial_length:
             raise IndexError
-
-
         else:
             while temp != initial:
                 if counter == position:
@@ -98,6 +96,7 @@ if __name__ == "__main__":
     t1.insertElement(3)
     t1.insertElement(7)
     t1.insertElement(9)
+    t1.printList()
     print("$$$$$$$$")
     t1.insertElementAtPosition(5, 0)
     t1.printList()
