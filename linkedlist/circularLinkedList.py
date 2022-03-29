@@ -67,6 +67,30 @@ class CircularLinkedList:
                     tail_counter = temp
                     temp = temp.next
 
+    def deletenodeatposition(self, position=None):
+        tail_pointer = None
+        temp = self.head
+        listLength = self.getLength()
+        counter = 0
+        while temp:
+            if position == 0:
+                next_node = temp.next
+                self.tail.next = next_node
+                self.head = next_node
+                break
+            elif position == listLength - 1 and position == counter:
+                self.tail = tail_pointer
+                self.tail.next = self.head
+                break
+            elif position == counter:
+                next_node = temp.next
+                tail_pointer.next = next_node
+                break
+            else:
+                tail_pointer = temp
+                temp = temp.next
+                counter += 1
+
 
 if __name__ == "__main__":
     t1 = CircularLinkedList()
@@ -76,4 +100,7 @@ if __name__ == "__main__":
     t1.insertElement(9)
     print("$$$$$$$$")
     t1.insertElementAtPosition(5, 0)
+    t1.printList()
+    t1.deletenodeatposition(1)
+    print("$$$$$$")
     t1.printList()
