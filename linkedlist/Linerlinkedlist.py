@@ -259,14 +259,14 @@ if __name__ == "__main__":
     t1.addElement(2)
     t1.addElement(14)
     t1.addElement(16)
-    t1.addElement(17)
+    t1.addElement(18)
     val = t1.head
 
     t2 = LinkedListImp()
-    t2.addElement(12)
-    t2.addElement(45)
+    t2.addElement(1)
+    t2.addElement(15)
     t2.addElement(47)
-    t2.addElement(48)
+    t2.addElement(17)
     # t1.printLinkedListRecursive(t1)
     # print(t1.printListWithLength())
     # print(t1.sumOfAllElements())
