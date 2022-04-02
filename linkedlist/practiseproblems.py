@@ -1,3 +1,4 @@
+import sys
 class Node:
     def __init__(self, data=None, next=None):
         self.data = data
@@ -27,8 +28,8 @@ class LinkedList:
             counter += 1
         return counter
 
-    def printList(self):
-        temp = self.head
+    def printList(self, head):
+        temp = head
         while temp:
             value = temp.data
             print(value)
@@ -75,6 +76,26 @@ class LinkedList:
                 temp = temp.next
                 position += 1
 
+    def delete(self, value=None):
+        temp = self.head
+        tail_pointer = None
+        pos = 0
+        while temp:
+            data = temp.data
+            if pos == 0 and value == self.head.data:
+                self.head = None
+                self.head = temp.next
+                temp = self.head
+
+            elif data == value:
+                tail_pointer.next = temp.next
+                temp = tail_pointer.next
+                pos += 1
+            else:
+                tail_pointer = temp
+                temp = temp.next
+                pos += 1
+
     def middleOfLinkedList(self):
         slow_pointer = self.head
         fast_pointer = self.head
@@ -113,32 +134,64 @@ class LinkedList:
             if temp_val == tem2_val:
                 return True
 
+    def reverseLinkedList(self, head):
+        r = None
+        q = None
+        p = head
+        while p is not None:
+            r = q
+            q = p
+            p = p.next
+            q.next = r
+        head = q
+        return head
+
+    def getIntersectionNode(self, headA, headB):
+        temp = headA
+        temp_2 = headB
+        while temp and temp_2:
+            if temp == temp_2:
+                return temp.data
+            temp = temp.next
+            temp_2 = temp_2.next
+        return None
+
 
 if __name__ == "__main__":
     t1 = LinkedList()
-    t1.append(1)
-    t1.append(2)
+    t1.append(3)
+    t1.append(3)
     t1.append(3)
     t1.append(4)
     t1.append(5)
-    t1.append(6)
-
-    t2 = LinkedList()
-    t1.append(11)
-    t1.append(21)
-    t1.append(31)
-    t1.append(4)
-    t1.append(55)
-    t1.append(66)
+    t1.append(3)
 
     # t1.printList()
     # t1.deleteNNodesAfterMNodes(2, 2)
     # t1.printList()
-    t1.middleOfLinkedList()
+    # t1.middleOfLinkedList()
     # t1.solution2(2, 2)
     # print("$$$$")
     # t1.printList()
     # print("####")
-    # t1.deleteNodeWithVal(3)
+    t1.delete(3)
     # print("####")
     # t1.printList()
+    common = Node(15)
+
+    # Defining first LinkedList
+
+    head1 = Node(3)
+    head1.next = Node(6)
+    head1.next.next = Node(9)
+    head1.next.next.next = common
+    head1.next.next.next.next = Node(30)
+    reversedListA = t1.reverseLinkedList(head1)
+
+    # Defining second LinkedList
+
+    head2 = Node(10)
+    head2.next = common
+    head2.next.next = Node(30)
+    reversedListB = t1.reverseLinkedList(head2)
+    print(t1.getIntersectionNode(reversedListA, reversedListB))

@@ -291,9 +291,9 @@ if __name__ == "__main__":
     # print(t1.printList())
     # print(t1.isSorted())
     # print(t1.reverseLinkListWithReverseNumbers())
-    # print(t1.reverseLinkListWithReverseLinks())
+    print(t1.reverseLinkListWithReverseLinks())
     # print(t1.concateLinkedList(ldata=t2))
-    t3 = LinkedListImp()
-    t3.merge2sortedLinkedList(t1, t2)
+    #t3 = LinkedListImp()
+    #t3.merge2sortedLinkedList(t1, t2)
 
-    print(t3.printList())
+    print(t1.printList())
