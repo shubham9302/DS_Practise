@@ -1,4 +1,7 @@
+import copy
 import sys
+
+
 class Node:
     def __init__(self, data=None, next=None):
         self.data = data
@@ -146,6 +149,26 @@ class LinkedList:
         head = q
         return head
 
+    def isPalindrome(self, head):
+        original = copy.deepcopy(head)
+        reversedList = self.reverseLinkedList(head)
+        temp_2 = reversedList
+        self.printList(temp_2)
+        print("####")
+        self.printList(original)
+        temp = original
+        while temp:
+            print("temp_2.data",temp_2.data)
+            print("temp.data",temp.data)
+            if temp_2.data != temp.data:
+                print("inside if")
+                print("temp_2.data",temp_2.data)
+                print("temp.data",temp.data)
+                return False
+            temp_2 = temp_2.next
+            temp = temp.next
+        return True
+
     def getIntersectionNode(self, headA, headB):
         temp = headA
         temp_2 = headB
@@ -156,15 +179,34 @@ class LinkedList:
             temp_2 = temp_2.next
         return None
 
+    def deleteDuplicates(self):
+        temp = self.head
+        tail_pointer = None
+        data = list()
+        while temp:
+            if temp.data in data:
+                tail_pointer.next = temp.next
+                temp = temp.next
+            else:
+                data.append(temp.data)
+                tail_pointer = temp
+                temp = temp.next
+
 
 if __name__ == "__main__":
     t1 = LinkedList()
     t1.append(3)
     t1.append(3)
     t1.append(3)
-    t1.append(4)
+    t1.append(1)
     t1.append(5)
     t1.append(3)
+    t2 = LinkedList()
+    t2.append(1)
+    t2.append(1)
+    t2.append(2)
+    t2.append(1)
+
 
     # t1.printList()
     # t1.deleteNNodesAfterMNodes(2, 2)
@@ -174,7 +216,7 @@ if __name__ == "__main__":
     # print("$$$$")
     # t1.printList()
     # print("####")
-    t1.delete(3)
+    # t1.delete(3)
     # print("####")
     # t1.printList()
     common = Node(15)
@@ -194,4 +236,9 @@ if __name__ == "__main__":
     head2.next = common
     head2.next.next = Node(30)
     reversedListB = t1.reverseLinkedList(head2)
-    print(t1.getIntersectionNode(reversedListA, reversedListB))
+    # print(t1.getIntersectionNode(reversedListA, reversedListB))
+    t1.delete(3)
+    t1.printList(t1.head)
+    #head = t1.head
+    #temp_copy = copy.deepcopy(t2)
+    #print(t1.isPalindrome(t2.head))
