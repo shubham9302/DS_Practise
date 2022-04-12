@@ -65,9 +65,6 @@ class Tree:
     def preOrderIterative(self, root):
         dataset = list()
         temp = root
-        print(temp.data)
-        dataset.append(root)
-        temp = temp.left
         while dataset or temp:
             if temp:
                 print(temp.data)
@@ -90,6 +87,13 @@ class Tree:
                 temp = temp.right
 
     def postOrderIterative(self, root):
+        """
+        PostOrder is left -> right-> root
+        but as we are using stack and which is
+        LIFO we need to reverse the sequence
+        :param root:
+        :return:
+        """
         rev = []
         stack = [(root, False)]
         while stack:
@@ -158,3 +162,11 @@ if __name__ == "__main__":
     # t1.inOrder(root)
     # t1.postOrderIterative(root)
     t1.levelOrderTraversal(root)
+
+    """
+    If we want to create a tree 
+    for traversal available 
+    we should have either 
+    pre+in or post+inorder
+    
+    """
