@@ -58,8 +58,8 @@ class Tree:
         # left -> right -> root
         # postOrder(left) -> postOrder(right) -> visit(node)
         if temp:
-            self.inOrder(temp.left)
-            self.inOrder(temp.right)
+            self.postOrder(temp.left)
+            self.postOrder(temp.right)
             print(temp.data)
 
     def preOrderIterative(self, root):
@@ -88,26 +88,19 @@ class Tree:
                 temp = dataset.pop()
                 print(temp.data)
                 temp = temp.right
-    """
-    def postOrderIterative(self, root):
-        dataset = list()
-        temp = root
-        while dataset or temp:
-            if temp:
-                dataset.append(temp)
-                temp = temp.left
-            else:
-                temp = dataset.pop()
-                val = id(temp)
 
-                if val > 0:
-                    dataset.append(-val)
-                    temp = ctypes.cast(val, ctypes.py_object)
-                    temp = temp.right
+    def postOrderIterative(self, root):
+        rev = []
+        stack = [(root, False)]
+        while stack:
+            node, visited = stack.pop()
+            if node:
+                if visited:
+                    rev.append(node.data)
                 else:
-                    print(temp.data)
-                    temp = None
-    """
+                    stack.append((node, True))
+                    stack.append((node.right, False))
+                    stack.append((node.left, False))
 
     def levelOrderTraversal(self, root):
         dataset = Queue(maxsize=0)
@@ -127,7 +120,7 @@ class Tree:
 
 
 if __name__ == "__main__":
-    t1 = Tree(root_node_val=8)
+    t1 = Tree(root_node_val=10)
     t1.createTree()
     root = t1.root
     """
