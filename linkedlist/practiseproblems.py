@@ -158,15 +158,39 @@ class LinkedList:
         self.printList(original)
         temp = original
         while temp:
-            print("temp_2.data",temp_2.data)
-            print("temp.data",temp.data)
+            print("temp_2.data", temp_2.data)
+            print("temp.data", temp.data)
             if temp_2.data != temp.data:
                 print("inside if")
-                print("temp_2.data",temp_2.data)
-                print("temp.data",temp.data)
+                print("temp_2.data", temp_2.data)
+                print("temp.data", temp.data)
                 return False
             temp_2 = temp_2.next
             temp = temp.next
+        return True
+
+    def ispalindrome(self, head):
+        slow = head
+        fast = head
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+        prev = slow
+        slow = slow.next
+        prev.next = None
+        while slow:
+            temp = slow.next
+            slow.next = prev
+            prev = slow
+            slow = temp
+
+        fast = head
+        slow = prev
+        while slow:
+            if fast.val != slow.val:
+                return False
+            slow = slow.next
+            fast = fast.next
         return True
 
     def getIntersectionNode(self, headA, headB):
@@ -192,21 +216,73 @@ class LinkedList:
                 tail_pointer = temp
                 temp = temp.next
 
+    def oddList(self, head):
+        # [1,2,3,4,5,6,7]
+        odd_pointer = head
+        while odd_pointer and odd_pointer.next:
+            next_next_node = odd_pointer.next.next
+            odd_pointer.next = next_next_node
+            odd_pointer = next_next_node
+        return head
+
+    def evenList(self, head):
+        head = head.next
+        even_pointer = head
+        while even_pointer and even_pointer.next:
+            next_next_node = even_pointer.next.next
+            even_pointer.next = next_next_node
+            even_pointer = next_next_node
+        return head
+
+    def oddEvenList(self, head):
+        odd_pointer = head
+        temp_odd_head = odd_pointer.next
+
+        # print("temp_odd_head.next.data",temp_odd_head.next.data)
+        tail_odd_pointer = None
+
+        while odd_pointer and odd_pointer.next:
+            next_next_node = odd_pointer.next.next
+            odd_pointer.next = next_next_node
+            tail_odd_pointer = odd_pointer
+            odd_pointer = next_next_node
+
+        even_pointer = temp_odd_head
+        # print(even_pointer.data)
+        temp_head = even_pointer
+        while even_pointer and even_pointer.next:
+            next_next_node = even_pointer.next.next
+            even_pointer.next = next_next_node
+            even_pointer = next_next_node
+
+        # self.printList(temp_head)
+        # tail_odd_pointer.next = temp_odd_head
+        return temp_head
+
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow_pointer = head
+        fast_pointer = head
+        while fast_pointer and fast_pointer.next:
+            slow_pointer = slow_pointer.next
+            fast_pointer = fast_pointer.next.next
+            if slow_pointer == fast_pointer:
+                return True
+        return False
+
 
 if __name__ == "__main__":
     t1 = LinkedList()
-    t1.append(3)
-    t1.append(3)
-    t1.append(3)
     t1.append(1)
-    t1.append(5)
+    t1.append(2)
     t1.append(3)
+    t1.append(4)
+    t1.append(5)
+    t1.append(6)
     t2 = LinkedList()
     t2.append(1)
     t2.append(1)
     t2.append(2)
     t2.append(1)
-
 
     # t1.printList()
     # t1.deleteNNodesAfterMNodes(2, 2)
@@ -237,8 +313,7 @@ if __name__ == "__main__":
     head2.next.next = Node(30)
     reversedListB = t1.reverseLinkedList(head2)
     # print(t1.getIntersectionNode(reversedListA, reversedListB))
-    t1.delete(3)
-    t1.printList(t1.head)
-    #head = t1.head
-    #temp_copy = copy.deepcopy(t2)
-    #print(t1.isPalindrome(t2.head))
+    # t1.delete(3)
+    # t1.printList(t1.head)
+    val = t1.oddEvenList(t1.head)
+    t1.printList(val)
