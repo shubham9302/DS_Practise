@@ -214,14 +214,59 @@ class LinkedListImp:
             q.next = r
         self.head = q
 
+    def concateLinkedList(self, ldata=None):
+
+        self.tail.next = ldata.head
+
+    def merge2sortedLinkedList(self, ldata1=None, ldata2=None):
+        first = ldata1.head
+        second = ldata2.head
+        third = None
+        last = None
+
+        if first.data < second.data:
+            third = first
+            last = first
+
+            first = first.next
+            last.next = None
+        else:
+            third = second
+            last = second
+
+            second = second.next
+            last.next = None
+        while first is not None and second is not None:
+            if first.data < second.data:
+                last.next = first
+                last = first
+                first = first.next
+                last.next = None
+            else:
+                last.next = second
+                last = second
+                second = second.next
+                last.next = None
+        if first is not None:
+            last.next = first
+        else:
+            last.next = second
+        self.head = third
+
 
 if __name__ == "__main__":
     t1 = LinkedListImp()
     t1.addElement(2)
-    t1.addElement(15)
-    t1.addElement(12)
     t1.addElement(14)
+    t1.addElement(16)
+    t1.addElement(18)
     val = t1.head
+
+    t2 = LinkedListImp()
+    t2.addElement(1)
+    t2.addElement(15)
+    t2.addElement(47)
+    t2.addElement(17)
     # t1.printLinkedListRecursive(t1)
     # print(t1.printListWithLength())
     # print(t1.sumOfAllElements())
@@ -247,4 +292,8 @@ if __name__ == "__main__":
     # print(t1.isSorted())
     # print(t1.reverseLinkListWithReverseNumbers())
     print(t1.reverseLinkListWithReverseLinks())
+    # print(t1.concateLinkedList(ldata=t2))
+    #t3 = LinkedListImp()
+    #t3.merge2sortedLinkedList(t1, t2)
+
     print(t1.printList())
