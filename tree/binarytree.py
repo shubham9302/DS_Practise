@@ -122,11 +122,37 @@ class Tree:
                 print(right_child.data)
                 dataset.put(right_child)
 
+    def createTreeWithTraversal(self, preOrder=[], inOrder=[]):
+        root = Node(preOrder[0])
+        root_index = inOrder.index(preOrder[0])
+        root.left = inOrder[:root_index]
+        root.right = inOrder[root_index + 1:]
+        print("root.left", root.left)
+        print("root.right", root.right)
+        for i in preOrder[1:]:
+            if i in root.left:
+                print(i)
+                temp = Node(i)
+
+                root_index = root.left.index(i)
+                temp.left = root.left[:root_index]
+                temp.right = root.left[root_index + 1:]
+                root = temp
+
+            if i in root.right:
+                print(i)
+                temp = Node(i)
+                root_index = root.left.index(i)
+                temp.left = root.left[:root_index]
+                temp.right = root.left[root_index + 1:]
+                root = temp
+        return root
+
 
 if __name__ == "__main__":
     t1 = Tree(root_node_val=10)
-    t1.createTree()
-    root = t1.root
+    # t1.createTree()
+    # root = t1.root
     """
     sample input stream 
     self.root 8
@@ -161,7 +187,7 @@ if __name__ == "__main__":
     # print("###")
     # t1.inOrder(root)
     # t1.postOrderIterative(root)
-    t1.levelOrderTraversal(root)
+    # t1.levelOrderTraversal(root)
 
     """
     If we want to create a tree 
@@ -170,3 +196,7 @@ if __name__ == "__main__":
     pre+in or post+inorder
     
     """
+    inn = ['D', 'B', 'E', 'A', 'F', 'C']
+    pre = ['A', 'B', 'D', 'E', 'C', 'F']
+    root = t1.createTreeWithTraversal(pre, inn)
+    #t1.preOrder(root)
