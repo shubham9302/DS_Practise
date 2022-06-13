@@ -2,31 +2,28 @@ class QueData:
     def __init__(self, size=None):
         self.queData = []
         self.size = size
-        self.rear = None
-        self.front = None
+        self.rear = -1
+        self.front = -1
 
     def enque(self, value):
-        if self.rear is None:
-            self.rear = 0
-            print(self.rear)
-            self.queData.append(value)
-        elif self.rear < self.size:
+        if self.rear < self.size:
             self.rear += 1
             self.queData.append(value)
         else:
             raise Exception("Max size reached")
 
     def deque(self):
-        if self.front is None and self.rear is not None:
-            self.front = 0
-            del self.queData[self.front]
-            self.rear -= 1
-        elif self.rear is not None:
+        if self.front != self.rear:
             self.front += 1
             del self.queData[self.front]
             self.rear -= 1
-        elif self.rear < 0 or self.rear is None:
+        elif self.isEmpty():
             raise Exception("Que is Empty")
+
+    def isEmpty(self):
+        if self.front == self.rear:
+            return True
+        return False
 
     def printQue(self):
         print(*self.queData)
