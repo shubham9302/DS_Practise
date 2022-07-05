@@ -10,12 +10,12 @@ class selectionSort:
         n = len(self.a)
         for i in range(0, n):
             temp = i
-            for y in range(i, n-1):
-                if self.a[temp] > self.a[y+1]:
-                    temp = y+1
-                    print("temp",temp)
+            for y in range(i, n - 1):
+                if self.a[temp] > self.a[y + 1]:
+                    temp = y + 1
+                    print("temp", temp)
             self.a = Utilities.swap(temp, i, self.a)
-            print("self.a",self.a)
+            print("self.a", self.a)
         return self.a
 
 

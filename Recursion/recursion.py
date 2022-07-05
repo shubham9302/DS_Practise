@@ -97,3 +97,16 @@ if __name__ == "__main__":
     # print(t1.tailrecursionPower(3, 4))
     # print(t1.headrecursionPower(3, 4))
     # print(t1.fastpower(3, 4))
+"""
+Tail Recursion -> If all the operations are performed 
+inside a recursive method at calling time then it is
+called as tail recursion ,any operation happening at 
+return time will not be counted uner tail recursion 
+
+Note : Tail Recursion can be directly converted to 
+loops and
+
+Head Recursion -> If all the operations are performed 
+inside a recursive method at returning time ,then 
+it is called head recursion 
+"""

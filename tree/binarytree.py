@@ -58,16 +58,13 @@ class Tree:
         # left -> right -> root
         # postOrder(left) -> postOrder(right) -> visit(node)
         if temp:
-            self.inOrder(temp.left)
-            self.inOrder(temp.right)
+            self.postOrder(temp.left)
+            self.postOrder(temp.right)
             print(temp.data)
 
     def preOrderIterative(self, root):
         dataset = list()
         temp = root
-        print(temp.data)
-        dataset.append(root)
-        temp = temp.left
         while dataset or temp:
             if temp:
                 print(temp.data)
@@ -88,26 +85,26 @@ class Tree:
                 temp = dataset.pop()
                 print(temp.data)
                 temp = temp.right
-    """
-    def postOrderIterative(self, root):
-        dataset = list()
-        temp = root
-        while dataset or temp:
-            if temp:
-                dataset.append(temp)
-                temp = temp.left
-            else:
-                temp = dataset.pop()
-                val = id(temp)
 
-                if val > 0:
-                    dataset.append(-val)
-                    temp = ctypes.cast(val, ctypes.py_object)
-                    temp = temp.right
+    def postOrderIterative(self, root):
+        """
+        PostOrder is left -> right-> root
+        but as we are using stack and which is
+        LIFO we need to reverse the sequence
+        :param root:
+        :return:
+        """
+        rev = []
+        stack = [(root, False)]
+        while stack:
+            node, visited = stack.pop()
+            if node:
+                if visited:
+                    rev.append(node.data)
                 else:
-                    print(temp.data)
-                    temp = None
-    """
+                    stack.append((node, True))
+                    stack.append((node.right, False))
+                    stack.append((node.left, False))
 
     def levelOrderTraversal(self, root):
         dataset = Queue(maxsize=0)
@@ -125,11 +122,37 @@ class Tree:
                 print(right_child.data)
                 dataset.put(right_child)
 
+    def createTreeWithTraversal(self, preOrder=[], inOrder=[]):
+        root = Node(preOrder[0])
+        root_index = inOrder.index(preOrder[0])
+        root.left = inOrder[:root_index]
+        root.right = inOrder[root_index + 1:]
+        print("root.left", root.left)
+        print("root.right", root.right)
+        for i in preOrder[1:]:
+            if i in root.left:
+                print(i)
+                temp = Node(i)
+
+                root_index = root.left.index(i)
+                temp.left = root.left[:root_index]
+                temp.right = root.left[root_index + 1:]
+                root = temp
+
+            if i in root.right:
+                print(i)
+                temp = Node(i)
+                root_index = root.left.index(i)
+                temp.left = root.left[:root_index]
+                temp.right = root.left[root_index + 1:]
+                root = temp
+        return root
+
 
 if __name__ == "__main__":
-    t1 = Tree(root_node_val=8)
-    t1.createTree()
-    root = t1.root
+    t1 = Tree(root_node_val=10)
+    # t1.createTree()
+    # root = t1.root
     """
     sample input stream 
     self.root 8
@@ -164,4 +187,16 @@ if __name__ == "__main__":
     # print("###")
     # t1.inOrder(root)
     # t1.postOrderIterative(root)
-    t1.levelOrderTraversal(root)
+    # t1.levelOrderTraversal(root)
+
+    """
+    If we want to create a tree 
+    for traversal available 
+    we should have either 
+    pre+in or post+inorder
+    
+    """
+    inn = ['D', 'B', 'E', 'A', 'F', 'C']
+    pre = ['A', 'B', 'D', 'E', 'C', 'F']
+    root = t1.createTreeWithTraversal(pre, inn)
+    #t1.preOrder(root)
