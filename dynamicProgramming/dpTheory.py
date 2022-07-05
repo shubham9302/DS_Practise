@@ -31,7 +31,7 @@ try to create flow diagram with all the available choices at our disposal
 
 Once the recursion solution is done ,we can move to memoization .
 
-### Memoization :
+### Memoization (Top Down):
 In this solution ,we would try to create a matrix with dimension corresponding to
 entities which are changing in our recursive solution
 Which should initialize all the matrix value with -1
