@@ -10,8 +10,8 @@ import sys
 
 class MinCostPath:
 
-    def __init__(self, t=0, p=0, m=0, n=0):
-        self.dpMatrix = [[-1 for i in range(m - t + 1)] for y in range(n - p + 1)]
+    def __init__(self,cost=None):
+        self.dpMatrix = [[-1 for i in range(len(cost) + 1)] for y in range(len(cost) + 1)]
         pass
 
     def getMinPathRecursive(self, cost_matrix=None, t=0, p=0, m=0, n=0):
@@ -20,9 +20,9 @@ class MinCostPath:
         elif t == m and p == n:
             return cost_matrix[t][p]
         else:
-            return (cost_matrix[t][p] + min(self.getMinPath(cost_matrix, t + 1, p + 1, m, n),
-                                            self.getMinPath(cost_matrix, t, p + 1, m, n),
-                                            self.getMinPath(cost_matrix, t + 1, p, m, n)))
+            return (cost_matrix[t][p] + min(self.getMinPathRecursive(cost_matrix, t + 1, p + 1, m, n),
+                                            self.getMinPathRecursive(cost_matrix, t, p + 1, m, n),
+                                            self.getMinPathRecursive(cost_matrix, t + 1, p, m, n)))
 
     def getMinPathDp(self, cost_matrix=None, t=0, p=0, m=0, n=0):
 
@@ -43,5 +43,6 @@ if __name__ == "__main__":
     cost = [[1, 2, 3],
             [4, 8, 2],
             [1, 5, 3]]
-    t1 = MinCostPath(t=0, p=0, m=2, n=2)
-    print(t1.getMinPathDp(cost_matrix=cost, t=0, p=1, m=2, n=2))
+    t1 = MinCostPath(cost)
+    print(t1.getMinPathRecursive(cost_matrix=cost, t=0, p=0, m=1, n=2))
+    print(t1.getMinPathDp(cost_matrix=cost, t=0, p=0, m=2, n=2))
