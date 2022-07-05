@@ -20,6 +20,7 @@ class BinarySearch:
         return position
 
 
+
 if __name__ == "__main__":
     listData = [3, 6, 8, 12, 14, 17, 25, 29.31, 36, 42, 47, 53, 55, 62]
     t1 = BinarySearch(listData)
