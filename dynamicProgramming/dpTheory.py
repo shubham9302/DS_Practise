@@ -35,7 +35,7 @@ Once the recursion solution is done ,we can move to memoization .
 In this solution ,we would try to create a matrix with dimension corresponding to
 entities which are changing in our recursive solution
 Which should initialize all the matrix value with -1
-and while doing recursion if we get result for any matrix which should
+and while doing recursion if we get result for any matrix we should
 update the matrix value
 
 """
