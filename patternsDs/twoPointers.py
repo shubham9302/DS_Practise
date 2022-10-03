@@ -50,8 +50,6 @@ class twoPointers():
                 return None, None
 
 
-
-
 if __name__ == "__main__":
     t1 = twoPointers()
     arr = [1, 2, 3, 4, 6]
