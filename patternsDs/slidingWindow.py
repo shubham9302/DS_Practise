@@ -213,6 +213,17 @@ class slidingWindow():
             max_length = max(max_length, window_end - window_start + 1)
         return max_length
 
+    """
+    Given a string, find the length of the longest substring, 
+    which has all distinct characters.
+    
+    """
+
+    def problemAllDistinct(self, arr):
+        k = len(set(arr))
+        op = self.optSolP3(k,arr)
+        return op
+
 
 if __name__ == "__main__":
     t1 = slidingWindow()
